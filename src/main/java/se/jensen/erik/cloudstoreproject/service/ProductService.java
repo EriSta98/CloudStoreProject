@@ -12,8 +12,6 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Value("fakestore_url")
-    private String fakeStoreUrl;
 
     private final ProductRepository productRepository;
     private final RestTemplate restTemplate;
@@ -29,14 +27,12 @@ public class ProductService {
      * @return the saved products
      */
     public List<Product> fetchAndSaveProducts() {
+        String fakeStoreUrl = "http://yahyatesting-env.eba-sarnymwd.eu-north-1.elasticbeanstalk.com/products";
 
         Product[] response = restTemplate.getForObject(fakeStoreUrl, Product[].class);
 
         List <Product> products = Arrays.asList(response);
 
-        for (Product product : products) {
-            productRepository.save(product);
-        }
 
         return productRepository.findAll();
     }
