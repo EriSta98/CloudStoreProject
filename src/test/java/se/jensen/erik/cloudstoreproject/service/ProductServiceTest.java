@@ -40,3 +40,4 @@ class ProductServiceTest {
         verify(repository).findAll();
     }
 }
+
