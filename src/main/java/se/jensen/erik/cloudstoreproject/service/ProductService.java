@@ -20,8 +20,7 @@ public class ProductService {
         this.productRepository = productRepository;
         this.restTemplate = new RestTemplate();
     }
-
-
+    
     /**
      * Fetches products from a fake store and saves them to a database
      * @return the saved products
@@ -32,6 +31,8 @@ public class ProductService {
         Product[] response = restTemplate.getForObject(fakeStoreUrl, Product[].class);
 
         List <Product> products = Arrays.asList(response);
+
+        productRepository.saveAll(products);
 
 
         return productRepository.findAll();
