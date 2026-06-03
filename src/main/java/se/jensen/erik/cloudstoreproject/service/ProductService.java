@@ -2,7 +2,9 @@ package se.jensen.erik.cloudstoreproject.service;
 
 
 
+
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import se.jensen.erik.cloudstoreproject.model.Product;
@@ -15,14 +17,15 @@ import java.util.List;
 public class ProductService {
 
     @Value("${fakestore.url}")
-    private String fakeStoreUrl;
 
+    private final String fakeStoreUrl;
     private final ProductRepository productRepository;
     private final RestTemplate restTemplate;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, RestTemplate restTemplate, @Value("${fakestore.url}") String fakeStoreUrl) {
         this.productRepository = productRepository;
-        this.restTemplate = new RestTemplate();
+        this.restTemplate = restTemplate;
+        this.fakeStoreUrl = fakeStoreUrl;
     }
     
     /**
@@ -31,7 +34,12 @@ public class ProductService {
      */
     public List<Product> fetchAndSaveProducts() {
 
+        // RestTemplate is used to make HTTP requests to external API
         Product[] response = restTemplate.getForObject(fakeStoreUrl, Product[].class);
+
+        if (response == null) {
+            throw new IllegalStateException("Failed to fetch products from the fake store");
+        }
 
         List <Product> products = Arrays.asList(response);
 
