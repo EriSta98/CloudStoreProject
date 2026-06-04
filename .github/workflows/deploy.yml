@@ -81,7 +81,7 @@ jobs:
 
         - name: Upload JAR to S3
           run: |
-            aws s3 cp target/*.jar s3://${{ sercrets.AWS_s3_BUCKET }}/${{ steps.vars.outputs.artifact }}
+            aws s3 cp target/*.jar s3://${{ secrets.AWS_s3_BUCKET }}/${{ steps.vars.outputs.artifact }}
 
         - name: Create new Elastic Beanstalk version
           run: |
