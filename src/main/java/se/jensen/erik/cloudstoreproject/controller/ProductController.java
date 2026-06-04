@@ -21,7 +21,7 @@ public class ProductController {
         this.service = service;
     }
 
-    @PostMapping("fetch")
+    @GetMapping("/fetch")
     public List<Product> fetchProducts() {
         return service.fetchAndSaveProducts();
     }
