@@ -20,5 +20,5 @@ phases:
 
 artifacts:
   files:
-    - target/CloudStoreProject-0.0.1-SNAPSHOT.jar
+    - target/*.jar
   discard-paths: yes
