@@ -3,8 +3,8 @@ package se.jensen.erik.cloudstoreproject.service;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.web.client.RestTemplate;
-import se.jensen.erik.cloudstoreproject.model.Product;
-import se.jensen.erik.cloudstoreproject.repository.ProductRepository;
+import se.jensen.erik.cloudstoreproject.model.product.Product;
+import se.jensen.erik.cloudstoreproject.repository.product.ProductRepository;
 
 import java.util.List;
 

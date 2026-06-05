@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import se.jensen.erik.cloudstoreproject.model.Product;
-import se.jensen.erik.cloudstoreproject.repository.ProductRepository;
+import se.jensen.erik.cloudstoreproject.model.product.Product;
+import se.jensen.erik.cloudstoreproject.repository.product.ProductRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,18 +34,6 @@ public class ProductService {
      */
     public List<Product> fetchAndSaveProducts() {
 
-        /*
-        String response = restTemplate.getForObject(
-                fakeStoreUrl,
-                String.class
-        );
-
-        System.out.println(response);
-        return List.of();
-
-        */
-
-
         // RestTemplate is used to make HTTP requests to external API
         Product[] response = restTemplate.getForObject(fakeStoreUrl, Product[].class);
 
@@ -56,13 +44,6 @@ public class ProductService {
 
         List <Product> products = Arrays.asList(response);
 
-        for (Product p : products) {
-            System.out.println("ID: " + p.getId());
-            System.out.println("TITLE LENGTH: " + (p.getTitle() != null ? p.getTitle().length() : 0));
-            System.out.println("DESCRIPTION LENGTH: " + (p.getDescription() != null ? p.getDescription().length() : 0));
-            System.out.println("DESCRIPTION: " + p.getDescription());
-            System.out.println("----------------");
-        }
 
         productRepository.saveAll(products);
 

@@ -1,4 +1,4 @@
-package se.jensen.erik.cloudstoreproject.model;
+package se.jensen.erik.cloudstoreproject.model.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
