@@ -81,14 +81,14 @@ jobs:
 
         - name: Upload JAR to S3
           run: |
-            aws s3 cp target/*.jar s3://${{ secrets.AWS_s3_BUCKET }}/${{ steps.vars.outputs.artifact }}
+            aws s3 cp target/*.jar s3://${{ secrets.AWS_S3_BUCKET }}/${{ steps.vars.outputs.artifact }}
 
         - name: Create new Elastic Beanstalk version
           run: |
             aws elasticbeanstalk create-application-version \
               --application-name ${{ secrets.AWS_EB_APP_NAME }} \
               --version-label ${{ github.sha }} \
-              --source-bundle S3Bucket=${{ secrets.AWS_s3_BUCKET }},S3Key=${{ steps.vars.outputs.artifact }}
+              --source-bundle S3Bucket=${{ secrets.AWS_S3_BUCKET }},S3Key=${{ steps.vars.outputs.artifact }}
 
         - name: Deploy to Elastic Beanstalk environment
           run: |
