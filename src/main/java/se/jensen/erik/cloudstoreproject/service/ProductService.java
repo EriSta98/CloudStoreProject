@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import se.jensen.erik.cloudstoreproject.model.product.Product;
+import se.jensen.erik.cloudstoreproject.product.Product;
 import se.jensen.erik.cloudstoreproject.repository.product.ProductRepository;
 
 import java.util.Arrays;
