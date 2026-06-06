@@ -1,4 +1,4 @@
-package se.jensen.erik.cloudstoreproject.service;
+package se.jensen.erik.cloudstoreproject.service.Product;
 
 
 
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import se.jensen.erik.cloudstoreproject.product.Product;
+import se.jensen.erik.cloudstoreproject.product.model.Product;
 import se.jensen.erik.cloudstoreproject.repository.product.ProductRepository;
 
 import java.util.Arrays;
@@ -49,8 +49,6 @@ public class ProductService {
 
 
         return productRepository.findAll();
-
-
 
     }
 

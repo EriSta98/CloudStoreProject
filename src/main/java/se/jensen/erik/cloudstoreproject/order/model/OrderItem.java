@@ -2,7 +2,6 @@ package se.jensen.erik.cloudstoreproject.order.model;
 
 import jakarta.persistence.*;
 
-import javax.annotation.processing.Generated;
 
 @Entity
 @Table(name = "order_items")
@@ -12,7 +11,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private long ProductId;
+    private long productId;
 
     private String productTitle;
 
@@ -24,9 +23,8 @@ public class OrderItem {
 
     }
 
-    public OrderItem(Long id, long productId, String productTitle, Double price, int quantity) {
-        this.id = id;
-        ProductId = productId;
+    public OrderItem(long productId, String productTitle, Double price, int quantity) {
+        this.productId = productId;
         this.productTitle = productTitle;
         this.price = price;
         this.quantity = quantity;
@@ -41,11 +39,11 @@ public class OrderItem {
     }
 
     public long getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(long productId) {
-        ProductId = productId;
+        productId = productId;
     }
 
     public String getProductTitle() {

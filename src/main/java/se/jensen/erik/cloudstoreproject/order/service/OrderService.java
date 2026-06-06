@@ -3,11 +3,15 @@ package se.jensen.erik.cloudstoreproject.order.service;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import se.jensen.erik.cloudstoreproject.order.model.CreateOrderItemRequest;
 import se.jensen.erik.cloudstoreproject.order.model.CreateOrderRequest;
 import se.jensen.erik.cloudstoreproject.order.model.CustomerOrder;
 import se.jensen.erik.cloudstoreproject.order.model.OrderItem;
 import se.jensen.erik.cloudstoreproject.order.repository.OrderRepository;
-import se.jensen.erik.cloudstoreproject.product.Product;
+import se.jensen.erik.cloudstoreproject.product.model.Product;
+import se.jensen.erik.cloudstoreproject.product.client.ProductClient;
+
+
 
 import java.util.List;
 
@@ -15,7 +19,7 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final ProductClient productClient
+    private final ProductClient productClient;
 
     public OrderService(OrderRepository orderRepository, ProductClient productClient) {
         this.orderRepository = orderRepository;
@@ -27,13 +31,13 @@ public class OrderService {
 
         CustomerOrder order = new CustomerOrder(userEmail);
 
-        for (CreaterOrderItemRequest itemRequest : request.items()) {
+        for (CreateOrderItemRequest itemRequest : request.items()) {
             Product product = findProduct(products, itemRequest.productId());
 
             OrderItem item = new OrderItem(
-                    product.id(),
-                    product.title(),
-                    product.price(),
+                    product.getId(),
+                    product.getTitle(),
+                    product.getPrice(),
                     itemRequest.quantity()
             );
 

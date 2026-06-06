@@ -3,13 +3,28 @@ package se.jensen.erik.cloudstoreproject.model.user.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record LoginRequest(
+public class LoginRequest {
 
         @Email
         @NotBlank
-        String mail,
+        private String mail;
 
         @NotBlank
-        String password
-) {
+        private String password;
+
+        public String getMail() {
+                return mail;
+        }
+
+        public void setMail(String mail) {
+                this.mail = mail;
+        }
+
+        public String getPassword() {
+                return password;
+        }
+
+        public void setPassword(String password) {
+                this.password = password;
+        }
 }
