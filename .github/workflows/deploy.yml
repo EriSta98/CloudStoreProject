@@ -57,6 +57,8 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    env:
+      VERSION_LABEL: ${{ github.sha }}-${{ github.run_number }}
 
     steps:
         - name: Checkout code
@@ -87,7 +89,7 @@ jobs:
           run: |
             aws elasticbeanstalk create-application-version \
               --application-name ${{ secrets.AWS_EB_APP_NAME }} \
-              --version-label ${{ github.sha }}-${{ github.run_number }} \
+              --version-label $VERSION_LABEL \
               --source-bundle S3Bucket=${{ secrets.AWS_S3_BUCKET }},S3Key=${{ steps.vars.outputs.artifact }}
 
         - name: Deploy to Elastic Beanstalk environment
@@ -95,7 +97,7 @@ jobs:
             aws elasticbeanstalk update-environment \
               --application-name ${{ secrets.AWS_EB_APP_NAME }} \
               --environment-name ${{ secrets.AWS_EB_ENV_NAME }} \
-              --version-label ${{ github.sha }}
+              ---version-label $VERSION_LABEL
 
         - name: Wait for deployment to complete
           run: |
