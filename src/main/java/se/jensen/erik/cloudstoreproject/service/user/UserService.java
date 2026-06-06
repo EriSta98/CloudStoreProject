@@ -21,6 +21,7 @@ public class UserService {
 
         AppUser user = new AppUser();
 
+        user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(
                 passwordEncoder.encode(

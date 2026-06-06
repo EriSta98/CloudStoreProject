@@ -14,7 +14,7 @@ public class Product {
     private Double price;
 
     @Lob
-    @Column(length = 5000)
+    @Column(length = 5000, columnDefinition = "LONGTEXT")
     private String description;
 
     private String category;

@@ -52,8 +52,8 @@ public class OrderService {
 
     private Product findProduct(List<Product> products, long productId){
         return products.stream()
-                .filter(product -> product.id() == productId)
-                .findFIrst()
+                .filter(product -> product.getId() == productId)
+                .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"Product not found"
                 ));
