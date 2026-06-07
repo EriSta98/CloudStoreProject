@@ -79,7 +79,7 @@ jobs:
 
         - name: Generate deployment package name
           id: vars
-          run: echo "artifact=app-${{ github.sha }}.jar" >> $GITHUB_OUTPUT
+          run: echo "artifact=app-$VERSION_LABEL.jar" >> $GITHUB_OUTPUT
 
         - name: Upload JAR to S3
           run: |
@@ -97,7 +97,7 @@ jobs:
             aws elasticbeanstalk update-environment \
               --application-name ${{ secrets.AWS_EB_APP_NAME }} \
               --environment-name ${{ secrets.AWS_EB_ENV_NAME }} \
-              ---version-label $VERSION_LABEL
+              --version-label $VERSION_LABEL
 
         - name: Wait for deployment to complete
           run: |
