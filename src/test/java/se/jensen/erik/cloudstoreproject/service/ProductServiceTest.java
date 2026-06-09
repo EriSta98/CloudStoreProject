@@ -2,6 +2,7 @@ package se.jensen.erik.cloudstoreproject.service;
 
 import org.junit.jupiter.api.Test;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 import se.jensen.erik.cloudstoreproject.product.model.Product;
 import se.jensen.erik.cloudstoreproject.repository.product.ProductRepository;
@@ -14,7 +15,8 @@ import static org.mockito.Mockito.*;
 
 class ProductServiceTest {
 
-    private static final String FAKE_STORE_URL = "https://fakestoreapi.com/products";
+    @Value("${fakestore.url}")
+    private static final String FAKE_STORE_URL = "fakeStoreUrl";
 
     @Test
     void getAllProducts() {
