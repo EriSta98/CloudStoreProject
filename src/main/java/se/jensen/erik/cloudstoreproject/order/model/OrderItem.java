@@ -42,7 +42,7 @@ public class OrderItem {
     }
 
     public void setProductId(long productId) {
-        productId = productId;
+        this.productId = productId;
     }
 
     public String getProductTitle() {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <title>Your Cart</title>
+</head>
+<body>
+
+<h1>Your Cart 🧺</h1>
+
+<div th:if="${#lists.isEmpty(items)}">
+    <p>Your cart is empty</p>
+</div>
+
+<div th:each="item : ${items}" style="margin:10px; border-bottom:1px solid #ccc;">
+
+    <h3 th:text="${item.title}"></h3>
+
+    <p>
+        Price: <span th:text="${item.price}"></span> €
+    </p>
+
+    <p>
+        Quantity: <span th:text="${item.quantity}"></span>
+    </p>
+
+    <form th:action="@{'/cart/remove/' + ${item.productId}}" method="post">
+        <button type="submit">Remove</button>
+    </form>
+
+</div>
+
+<hr>
+
+<h2>Total: <span th:text="${total}"></span> €</h2>
+
+<form action="/order/confirm" method="post">
+    <button type="submit">Confirm Order</button>
+</form>
+
+</body>
+</html>
