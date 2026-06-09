@@ -20,7 +20,6 @@ public class OrderItem {
     private int quantity;
 
     public OrderItem() {
-
     }
 
     public OrderItem(long productId, String productTitle, Double price, int quantity) {
