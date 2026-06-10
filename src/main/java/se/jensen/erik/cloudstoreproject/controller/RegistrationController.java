@@ -32,7 +32,6 @@ public class RegistrationController {
     public String register(
             @ModelAttribute RegisterRequest request
     ){
-
         userService.register(request);
 
         return "redirect:/login";
