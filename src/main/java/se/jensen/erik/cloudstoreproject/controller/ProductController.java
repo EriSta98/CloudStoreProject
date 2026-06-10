@@ -9,7 +9,7 @@ import se.jensen.erik.cloudstoreproject.service.Product.ProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 
 public class ProductController {
 

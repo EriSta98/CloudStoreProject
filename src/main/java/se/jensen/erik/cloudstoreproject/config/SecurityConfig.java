@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.RequestCacheConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import se.jensen.erik.cloudstoreproject.repository.user.AppUserRepository;
 
@@ -27,14 +29,23 @@ public class SecurityConfig {
                                 "/login",
                                 "/css/**",
                                 "/js/**",
-                                "/images/**"
+                                "/images/**",
+                                "/shop/**",
+                                "/api/**",
+                                "/order/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.GET, "/products").permitAll()
                         .anyRequest().authenticated()
                 )
+
+
+                .requestCache(RequestCacheConfigurer::disable)
+
+
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/shop/products", false)
+                        .failureUrl("/login?error")
                         .permitAll()
                 )
                 .logout(logout -> logout
