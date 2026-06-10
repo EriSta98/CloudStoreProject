@@ -18,7 +18,7 @@ services:
     container_name: cloudstore-app
 
     ports:
-      - "8080:8080"
+      - "5001:5001"
 
     depends_on:
       - mysql
