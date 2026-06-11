@@ -1,17 +1,4 @@
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: cloudstore-db
-
-    environment:
-      MYSQL_DATABASE: products
-      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-
-    ports:
-      - "3306:3306"
-
-    volumes:
-      - mysql_data:/var/lib/mysql
 
   backend:
     build: .
@@ -20,13 +7,10 @@ services:
     ports:
       - "5001:5001"
 
-    depends_on:
-      - mysql
 
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-
-volumes:
-  mysql_data:
+      fakestore.url: ${FAKESTORE_URL}
+      SERVER_PORT: 5001
